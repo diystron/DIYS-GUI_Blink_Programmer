@@ -80,7 +80,7 @@ def update_com():
     connect_ceck(0)
 
 #def connexion():
-#    if connect_btn
+#    if connect_btn=
 
 
     
