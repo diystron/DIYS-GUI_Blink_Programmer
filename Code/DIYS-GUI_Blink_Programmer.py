@@ -29,6 +29,7 @@ def connect_init():
     baud_select()
     content()
     
+    
 
 def connect_ceck(args):
     if "-" in clicked_com.get() or "-" in clicked_bd.get():
@@ -109,7 +110,7 @@ def connexion():
 
 def dataSend():
     global entryTimeHigh, ser
-    ser.write(b'b')
+    ser.write(b'o')
     
 
 def content():
