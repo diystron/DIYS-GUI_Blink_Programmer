@@ -11,19 +11,19 @@ def connect_init():
 
     #Show Available Port(s)
     port_label=Label(root, text="Available Port(s):", bg="white")
-    port_label.grid(column=1, row=1, pady=10, padx=10)
+    port_label.grid(column=1, row=1)
 
     # Show Baud Rate
     port_bd= Label(root, text="Baud Rate:", bg="white")
-    port_bd.grid(column=1, row=2, pady=10, padx=10)
+    port_bd.grid(column=1, row=2)
 
     #show button "Refresh"
-    refresh_btn=Button(root, text="Refresh", height=1, width=4, command=update_com) #?
-    refresh_btn.grid(column=3, row=1, pady=10, padx=10)
+    refresh_btn=Button(root, text="Refresh", height=1, width=3, command=update_com) #?
+    refresh_btn.grid(column=3, row=1, padx=8)
 
     #show "connect" button
     connect_btn= Button(root, text="connect", height=1, width=7, state="disable", command=connexion) #?
-    connect_btn.grid(column=3, row=2, pady=10, padx=10)
+    connect_btn.grid(column=3, row=2, padx=8)
 
     update_com()
     baud_select()
@@ -61,8 +61,8 @@ def baud_select():
 
     clicked_bd.set(bds[0])
     drob_bd=OptionMenu(root, clicked_bd, *bds, command=connect_ceck) #?
-    drob_bd.config(width=20)
-    drob_bd.grid(column=2, row=2, padx=50)
+    drob_bd.config(width=15)
+    drob_bd.grid(column=2, row=2, pady=5)
 
 def update_com():
     global clicked_com, drob_COM
@@ -79,13 +79,13 @@ def update_com():
     clicked_com=StringVar()
     clicked_com.set(coms[0])
     drob_COM=OptionMenu(root, clicked_com, *coms, command=connect_ceck) #?
-    drob_COM.config(width=20)
-    drob_COM.grid(column=2, row=1, padx=50)
+    drob_COM.config(width=15)
+    drob_COM.grid(column=2, row=1, pady=5)
     connect_ceck(0)
 
 def connexion():
     global connect_btn, serialData, ser
-    if connect_btn["text"] in "Disconnect:":
+    if connect_btn["text"] in "Disconnect":
         serialData = False
         connect_btn["text"] = "Connect"
         refresh_btn["state"] = "active"
@@ -95,7 +95,7 @@ def connexion():
 
     else:
         serialData = True
-        connect_btn["text"] = "Disconnect:"
+        connect_btn["text"] = "Disconnect"
         refresh_btn["state"] = "disable"
         drob_bd["state"] = "disable"
         drob_COM["state"] = "disable"
@@ -111,20 +111,38 @@ def connexion():
 def dataSend():
     global entryTimeHigh, ser
     ser.write(b'o')
+    timeHigh = entryTimeHigh.get()
+    timeLow = entryTimeLow.get()
+    dataToSend = timeHigh + "-" + timeLow
+    ser.write(dataToSend.encode())
+    
     
 
 def content():
-    global entryTimeHigh
+    global entryTimeHigh, entryTimeLow
+    #display "BLINK SETTING"
     label_BlinkSetting = Label(root, text="BLINK SETTING", background="white")
-    label_BlinkSetting.grid(column=2, row=5, pady=10, padx=10)
+    label_BlinkSetting.grid(column=2, row=5, pady=5)
 
-    label_TimeHigh = Label(root, text="WAKTU NYALA", background="white")
-    label_TimeHigh.grid(column=1, row=7, padx=10, pady=2)
+    #display label "TIME HIGH"
+    label_TimeHigh = Label(root, text="TIME HIGH", background="white")
+    label_TimeHigh.grid(column=1, row=7, pady=5)
 
+    #display entry "TIME HIGH"
     entryTimeHigh = Entry(root, width=5)
     entryTimeHigh.insert(0, "500")
     entryTimeHigh.grid(column=2, row=7)
 
+    #display label "TIME LOW"
+    label_TimeLow = Label(root, text="TIME LOW", background="white")
+    label_TimeLow.grid(column=1, row=8, pady=5)
+
+    #display entry "TIME LOW"
+    entryTimeLow = Entry(root, width=5)
+    entryTimeLow.insert(0, "500")
+    entryTimeLow.grid(column=2, row=8)
+
+    #tombol Button SAVE
     save_btn = Button(root, text="SAVE", height=1, width=4, command=dataSend)
     save_btn.grid(column=3, row=7)
 
