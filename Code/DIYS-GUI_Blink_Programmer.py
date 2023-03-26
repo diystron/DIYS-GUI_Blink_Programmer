@@ -111,11 +111,11 @@ def connexion():
 
 def dataSend():
     global entryTimeHigh, ser
-    #ser.write(b'o')
+    ser.write(b'u')
     time.sleep(1)
     timeHigh = entryTimeHigh.get()
     timeLow = entryTimeLow.get()
-    dataToSend = timeHigh + "-" + timeLow
+    dataToSend = timeHigh + '-' + timeLow
     ser.write(dataToSend.encode())
     #data send testing
     print(dataToSend)
