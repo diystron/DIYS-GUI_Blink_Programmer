@@ -129,8 +129,8 @@ def content():
     label_BlinkSetting.grid(column=2, row=5, pady=5)
 
     #display label "TIME HIGH"
-    label_TimeHigh = Label(root, text="TIME HIGH", background="white")
-    label_TimeHigh.grid(column=1, row=7, pady=5)
+    label_TimeHigh = Label(root, text="TIME HIGH | x100 ms", background="white")
+    label_TimeHigh.grid(column=1, row=7, padx=10, pady=5)
 
     #display entry "TIME HIGH"
     entryTimeHigh = Entry(root, width=5)
@@ -138,8 +138,8 @@ def content():
     entryTimeHigh.grid(column=2, row=7)
 
     #display label "TIME LOW"
-    label_TimeLow = Label(root, text="TIME LOW", background="white")
-    label_TimeLow.grid(column=1, row=8, pady=5)
+    label_TimeLow = Label(root, text="TIME LOW | x100 ms", background="white")
+    label_TimeLow.grid(column=1, row=8, padx=10, pady=5)
 
     #display entry "TIME LOW"
     entryTimeLow = Entry(root, width=5)
@@ -148,7 +148,7 @@ def content():
 
     #tombol Button SAVE
     save_btn = Button(root, text="SAVE", height=1, width=4, command=dataSend)
-    save_btn.grid(column=3, row=7)
+    save_btn.grid(column=4, row=7)
 
 
 
