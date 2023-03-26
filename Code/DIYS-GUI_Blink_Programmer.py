@@ -111,7 +111,7 @@ def connexion():
 
 def dataSend():
     global entryTimeHigh, ser
-    ser.write(b'o')
+    #ser.write(b'o')
     time.sleep(1)
     timeHigh = entryTimeHigh.get()
     timeLow = entryTimeLow.get()
