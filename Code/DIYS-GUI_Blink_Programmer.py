@@ -143,7 +143,7 @@ def content():
 
     #display entry "TIME LOW"
     entryTimeLow = Entry(root, width=5)
-    entryTimeLow.insert(0, "500")
+    entryTimeLow.insert(0, "5")
     entryTimeLow.grid(column=2, row=8)
 
     #tombol Button SAVE
